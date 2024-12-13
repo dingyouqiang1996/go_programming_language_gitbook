@@ -22,4 +22,11 @@ Hello, 世界
   - Go 原生地处理 `Unicode` 万国码
   - Go 通过 `包` 组织代码
     - 使用 `import` 关键字导入相关的包
+    - **注意**: go不会引用无关的包
   - `main包` 的 `main func()函数` 是程序的入口
+  - go代码结尾不需要 `;` 分号
+  - `gofmt` 是格式化代码工具(常用, ide会集成)
+    - `gofmt` 获取方式
+    ```shell
+    $ go install golang.org/x/tools/cmd/goimports@latest
+    ```
