@@ -1,6 +1,7 @@
 # 1.1 Hello World
 - `ch1/helloworld.go`
-```go
+
+```golang
 package main
 
 import "fmt"
@@ -9,6 +10,7 @@ func main() {
 	fmt.Println("Hello, 世界")
 }
 ```
+
 - 运行
 ```shell
 $ go run main.go
