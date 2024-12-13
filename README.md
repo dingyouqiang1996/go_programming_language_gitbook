@@ -13,3 +13,9 @@ nvm use 10
 npm install -g gitbook-cli
 gitbook --version
 ```
+- 运行gitbook
+```shell
+gitbook init
+gitbook serve
+gitbook build
+```
