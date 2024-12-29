@@ -1,3 +1,4 @@
+// Echo2 prints its command-line arguments.
 package main
 
 import (
