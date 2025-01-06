@@ -18,3 +18,22 @@ var b, f, s = true, 2.3, "four" // bool, flota64, string
 ```go
 var f, err = os.Open(name) // os.Open returns a file and an error
 ```
+### 2.3.1 Short Variable Declarations
+- var 声明通常用于需要显式类型与初始化表达式类型不同的局部变量，或者当变量将在稍后被赋值且其初始值不重要时
+```go
+i := 100 // an int
+var boiling float64 = 100 // a float64
+var names []string
+var err error
+var p Point
+```
+- `:=` 可以声明并初始化多个变量
+```go
+i, j := 0, 1
+```
+- 请记住，:= 是声明，而 = 是赋值。多变量声明不应与元组赋值混淆，在元组赋值中，左手边的每个变量都被赋予右手边的相应值
+- 短变量声明必须声明至少一个新变量，因此这段代码将无法编译。
+```go
+f, err := os.Open(infile)
+f, err := os.Create(outfile) // compile error: no new variables
+```
