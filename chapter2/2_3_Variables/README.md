@@ -100,5 +100,37 @@ func main() {
 }
 ```
 - 函数 flag.Bool 创建一个新的 bool 类型的标志变量。它接受三个参数：标志的名称（"n"）、变量的默认值（false）以及如果用户提供了无效参数、无效标志或 -h 或 -help 时将打印的消息。类似地，flag.String 接受一个名称、一个默认值和一个消息，并创建一个字符串变量。变量 sep 和 n 是指向标志变量的指针，必须通过 *sep 和 *n 间接访问。
-- 
+
+## 2.3.3 The new Function
+- 另一种创建变量的方法是使用内置函数 new。表达式 new(T) 创建一个未命名的 T 类型变量，将其初始化为 T 的零值，并返回其地址，该地址是 *T 类型的值。
+```go
+p := new(int) // p, of type *int, points to an unnamed int variable
+fmt.Println(*p) // "0"
+*p = 2 // sets the unnamed int to 2
+fmt.Println(*p) // "2"
+```
+- 使用 new 创建的变量与取地址的普通局部变量没有区别，只是不需要发明（和声明）一个临时名称，我们可以在表达式中使用 new(T)。因此，new 只是一个语法上的便利，而不是一个基本概念：下面的两个 newInt 函数具有相同的行为
+```go
+func newInt() *int {
+    return new(int)
+}
+
+func newInt() *int {
+    var dummy int
+    return &dummy
+}
+```
+- 每次调用 new 都返回一个具有唯一地址的不同变量。
+```go
+p := new(int)
+q := new(int)
+fmt.Println(p == q) // "false"
+```
+- 有一个例外：两个类型不携带任何信息且因此大小为零的变量，如 struct{} 或 [0]int，可能根据实现具有相同的地址。
+- new 函数相对较少使用，因为最常见的未命名变量是结构体类型，对于这些类型，结构体字面量语法更灵活
+- 由于 new 是一个预声明的函数，一个关键字，因此可以在函数内将其名称重新定义为其他东西，例如：
+```go
+func delta(old, new int) int { return new - old }
+```
+- 当然，在 delta 函数内，内置的 new 函数不可用。
 
