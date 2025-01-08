@@ -37,3 +37,6 @@ func CToF(c Celsius) Fahrenheit { return Fahrenheit(c*9/5 + 32) }
 // FToC converts a Fahrenheit temperature to Celsius.
 func FToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
 ```
+- 每个文件都以一个包声明开始，定义包名。当包被导入时，其成员被引用为 tempconv.CToF 等等。像类型和常量这样的包级名称在包的一个文件中声明，对包的其他文件可见，就好像源代码都在一个文件中一样。注意 tempconv.go 导入了 fmt，但 conv.go 没有，因为它没有使用 fmt 中的任何东西
+- 因为包级 const 名称以大写字母开头，它们也可以通过限定名称如 tempconv.AbsoluteZeroC 访问
+- 紧接在包声明之前的文档注释记录了整个包。按照惯例，它应该以示例中所示的风格开始于一个概述句。每个包中只有一个文件应该有包文档注释。详细的文档注释通常放在一个单独的文件中，按照惯例称为 doc.go
